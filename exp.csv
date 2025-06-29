@@ -1,0 +1,22 @@
+id,category,amount,description,date
+1,food,3200,swiggy order,2025-04-03
+2,shopping,2500,amazon,2025-04-05
+3,transport,900,ola ride,2025-04-08
+4,entertainment,600,movie tickets,2025-04-12
+5,bills,1200,electricity,2025-04-15
+6,food,2800,zomato order,2025-04-19
+7,books,850,sv book store,2025-04-22
+8,shopping,1800,westside,2025-04-27
+9,mobile recharge,450,jio,2025-04-28
+10,medicine,700,pharmacy,2025-04-29
+11,food,3500,restaurant,2025-05-02
+12,transport,1000,uber ride,2025-05-04
+13,bills,1300,internet,2025-05-07
+14,shopping,2200,myntra,2025-05-11
+15,entertainment,500,netflix subscription,2025-05-15
+16,food,3900,cafe,2025-05-18
+17,bills,1500,water,2025-05-21
+18,books,950,book store,2025-05-25
+19,medicine,800,hospital meds,2025-05-27
+20,mobile recharge,480,airtel,2025-05-29
+21,food,3100,delivery order,2025-05-30

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expense History</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7fafc;
+      color: #2c3e50;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-radius: 12px;
+    }
+    h2 {
+      color: #1c5739;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.95rem;
+    }
+    th {
+      background-color: #1c5739;
+      color: white;
+    }
+    tr:hover {
+      background-color: #e8f5e9;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 15px;
+      color: #1c5739;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid #1c5739;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a.back-link:hover {
+      background-color: #1c5739;
+      color: white;
+    }
+    button.delete-btn {
+      padding: 5px 10px;
+      background: #c0392b;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    button.delete-btn:hover {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h2>Expense History (Read Only)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Amount</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row[1] }}</td>
+        <td>{{ "%.2f"|format(row[2]) }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>
+          <button class="delete-btn" onclick="deleteExpense({{ row[0] }})">Delete</button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <a class="back-link" href="/">Back to Main</a>
+
+  <script>
+    async function deleteExpense(id) {
+      if (!confirm("Are you sure you want to delete this expense?")) return;
+
+      try {
+        const res = await fetch(`http://127.0.0.1:5000/delete/${id}`, {
+          method: 'DELETE'
+        });
+        if (res.ok) {
+          alert("Deleted successfully.");
+          location.reload();
+        } else {
+          alert("Delete failed.");
+        }
+      } catch (e) {
+        alert("Error deleting expense.");
+        console.error(e);
+      }
+    }
+  </script>
+</body>
+</html>
+
